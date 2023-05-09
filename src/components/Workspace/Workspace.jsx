@@ -11,10 +11,10 @@ const Workspace = () => {
     setCurrentNote(note);
   }, [currentNoteId, notes]);
 
-  const topic = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
-  const date = new Date().toString();
-  // "MMM DD, YYYY at HH:mm"
-  const note = "hgcyfctfxtfc";
+  // const topic = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
+  // const date = new Date().toString();
+  // // "MMM DD, YYYY at HH:mm"
+  // const note = "hgcyfctfxtfc";
 
   return (    
     <WorkspaceStyled>

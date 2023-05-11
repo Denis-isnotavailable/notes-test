@@ -1,14 +1,18 @@
-
-
 import React, { useState } from 'react';
 
 import { IconStyled, SearchBoxStyled } from './SearchBox.styled';
+import { useNoteData } from '../../appContext/context';
 
 
 function SearchBox() {
-    const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('');
+  const { setSearchValue } = useNoteData();
 
-    console.log(search);
+  const handleSearchChange = (value) => {
+    setSearch(value);
+    setSearchValue(value);
+  }
+  
   return (
       <SearchBoxStyled>
           {!search && <IconStyled />}
@@ -16,7 +20,7 @@ function SearchBox() {
               type="search"
               placeholder='Search'
               value={search}
-              onChange={e => setSearch(e.currentTarget.value)}
+              onChange={e => handleSearchChange(e.currentTarget.value)}
           />          
     </SearchBoxStyled>
   )

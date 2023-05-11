@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const WorkspaceStyled = styled.div`
-    width: calc(100% - 120px);
+    width: calc(100% - 150px);
     min-height: calc(100vh - 50px);
     margin-top: 3px;
     padding: 6px 6px;
@@ -20,11 +20,22 @@ export const WorkspaceStyled = styled.div`
     h2 {        
         margin-bottom: 8px;
         font-size: 12px;
+    }    
+
+    @media screen and (min-width: 768px) {
+        width: calc(100% - 250px);
+        margin-top: 3px;
+        padding: 16px 16px;
+
+        font-size: 16px;
+
+        p {       
+            margin-bottom: 14px;      
+        }
+
+    h2 {        
+        margin-bottom: 14px;
+        font-size: 16px;
     }
-
-    
-
-    span {
-
     }
 `;

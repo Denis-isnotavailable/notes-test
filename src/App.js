@@ -1,64 +1,59 @@
+import { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
 import MainAreaBox from "./components/MainAreaBox/MainAreaBox";
 import { AppContext } from './appContext/context';
-import { useEffect, useState } from "react";
+import { fetchNotes, addNote, deleteNote, editNote } from "./db/dbOperations";
+import { Modal } from "./components/Modal/Modal";
+import { ModalFormAddNote, ModalFormDeleteNote, ModalFormEditNote } from "./components/ModalForm/ModalForm";
 
 
 function App() {
-
   const [notes, setNotes] = useState([]);
   const [currentNoteId, setCurrentNoteId] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
+  const [modalType, setModalType] = useState("");
 
   useEffect(() => {
-    fetch("https://quintadb.com/apps/bJWQKXprHgrO_cGCoHD8kw/dtypes/entity/buWONdRxLdG6rLWQ7cGSoU.json?rest_api_key=biuCkLFsLnWQyBW6v3h0bv&amp;view=").then(
-      (response) => {
-        if (!response.ok) {
-          throw new Error(response.status);
-        }
-        return response.json();
-      }
-    ).then(
-      data => {
-        console.log(data.records);
-        setNotes(data.records);
-      }
-    );
+    const setFetchedNotes = async () => {
+      const data = await fetchNotes();
+      
+      setNotes(data);
+    };
+    setFetchedNotes();  
   }, []);
 
-  const addNote = (note) => {
-    setNotes(prev => [...prev, note]);
+  const addNewNote = async (note) => {   
+    const data = await addNote(note);    
+    setNotes(prev => [data, ...prev]);
+  };  
 
+  const deleteNoteMethod = async () => {
+    if (currentNoteId) {
+      const data = await deleteNote(currentNoteId);
+      data.result === "Successfully deleted" && setNotes(prev => prev.filter(({ id }) => id !== currentNoteId));
+      setCurrentNoteId(null);
+    }   
   };
 
-  console.log(currentNoteId);
+  const editNoteMethod = async (note, id) => {   
+    await editNote(note, id);
 
-  // const deleteNote = (id) => {
-  //   setNotes(prev => prev.filter());
-    
-  // };
+    const data = await fetchNotes();
+    setNotes(data);
+  };
 
+  const closeModal = () => setModalType("");
   
   return (
     
-    <AppContext.Provider value={{notes, currentNoteId, setCurrentNoteId}}>
+    <AppContext.Provider value={{notes, currentNoteId, setCurrentNoteId, setModalType, setSearchValue, searchValue, closeModal, addNewNote, deleteNoteMethod, editNoteMethod }}>
       <Header />
       <MainAreaBox />
+      {modalType === "addNote" && <Modal closeModal={closeModal}><ModalFormAddNote /></Modal>}
+      {modalType === "deleteNote" && <Modal closeModal={closeModal}><ModalFormDeleteNote /></Modal>}
+      {modalType === "editNote" && <Modal closeModal={closeModal}><ModalFormEditNote /></Modal>}
     </AppContext.Provider>
   );
 }
 
 export default App;
-
-
-
-
-  // const topic = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
-  // const date = new Date();
-  //   // "MMM DD, YYYY at HH:mm"
-  // const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem quisquam possimus corrupti earum consequuntur? Eveniet at quo inventore voluptas vero recusandae quia error voluptates. Tempora unde corporis reprehenderit nisi minima?";
-  // const oneNote = {
-  //   topic,
-  //   date,
-  //   description,
-  //   id: 1
-  // };

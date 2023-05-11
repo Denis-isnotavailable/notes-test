@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 
 export const HeaderStyled = styled.header`
-    /* color: ${p => p.color}; */
-
     display: flex;
     justify-content: space-between;
     align-items: center;

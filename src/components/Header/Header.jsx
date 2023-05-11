@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import { HeaderStyled } from './Header.styled'
 import ButtonsBox from '../ButtonsBox/ButtonsBox'

@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
+import { AiTwotoneLock } from "react-icons/ai";
 
 export const ListItemStyled = styled.li`
-    padding: 8px 4px;
+    position: relative;
+    padding: 8px 4px 8px 18px;
     border-bottom: 1px solid #bdbaba;
 
     font-size: 12px;
@@ -14,10 +16,7 @@ export const ListItemStyled = styled.li`
         background-color: #d7d5d5;
     }
 
-    h1 {
-        /* height: 16px; */
-        /* width: 94px; */
-        
+    h1 {        
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -29,8 +28,28 @@ export const ListItemStyled = styled.li`
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-
-        /* font-size: 12px; */
     }
 
+    @media screen and (min-width: 768px) {
+        padding-left: 24px;
+        font-size: 14px;
+
+        h1 {
+            font-size: 16px;
+        }
+    }
+
+`;
+
+export const LockIconStyled = styled(AiTwotoneLock)`
+    position: absolute;
+    top: 9px;
+    left: 2px;
+
+    @media screen and (min-width: 768px) {
+        top: 12px;
+        left: 4px;
+
+        width: 18px;
+    }
 `;

@@ -15,6 +15,12 @@ export const SearchBoxStyled = styled.div`
             text-align: center;
         }
     }
+
+    @media screen and (min-width: 768px) {
+        input {
+            width: 300px;
+        }        
+    }
 `;
 
 export const IconStyled = styled(BiSearch)`
@@ -25,4 +31,8 @@ export const IconStyled = styled(BiSearch)`
     width: 16px;
     height: 16px;
     color: grey;
+
+    @media screen and (min-width: 768px) {
+        left: 102px;
+    }
 `;

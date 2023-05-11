@@ -11,18 +11,21 @@ const Workspace = () => {
     setCurrentNote(note);
   }, [currentNoteId, notes]);
 
-  // const topic = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
-  // const date = new Date().toString();
-  // // "MMM DD, YYYY at HH:mm"
-  // const note = "hgcyfctfxtfc";
+  const dmy = new Date(currentNote?.updated_at).toLocaleString("en-US", { dateStyle: "medium" });
+  const hm = new Date(currentNote?.updated_at).toLocaleString("en-US", { timeStyle: "short" });  
+  const date = `${dmy} at ${hm}`;
 
   return (    
     <WorkspaceStyled>
-      <p>{currentNote?.values.dcLYRcLmjaWRz7bZRdOmoe}</p>
-      <h2>{currentNote?.values.ddIKrLySjof4kWW4r_W60J}</h2>
-      <span>{currentNote?.values.cLmCovyqLbtPlcK8ocWQii}</span>
+      {currentNote && <p>{date}</p>}
+      <h2>{currentNote?.values.cqdSoLW7PdNO_cPCk9W7ri}</h2>
+      <span>{currentNote?.values.cOpH80i8ncnioZza3dGSkQ}</span>
     </WorkspaceStyled>
   )
 }
 
 export default Workspace;
+
+// cOpH80i8ncnioZza3dGSkQ: noteText
+// cqdSoLW7PdNO_cPCk9W7ri: topic
+// dcUenzWQXhW5WbW43cUrft: isLocked

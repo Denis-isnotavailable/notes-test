@@ -6,4 +6,9 @@ export const MainAreaBoxStyled = styled.div`
     padding-right: 4px;
 
     overflow: hidden;
+
+    @media screen and (min-width: 768px) {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
 `;
